@@ -32,7 +32,7 @@ Weather Source in the Snowflake Data Marketplace by following these steps:
          -> Marketplace
              -> Search: "Weather Source LLC: frostbyte" (and click on tile in results)
                  -> Click the blue "Get" button
-                     -> Under "Options", adjust the Database name to read "HOL_WEATHERSOURCE_DB" (all capital letters)
+                     -> Under "Options", adjust the Database name to read "FROSTBYTE_WEATHERSOURCE" (all capital letters)
                         -> Grant to "HOL_ROLE"
 
 We can then use this data as if it had been loaded directly into our account. And
@@ -44,12 +44,12 @@ SET WEATHERSOURCE_ACCT_NAME = '*** PUT ACCOUNT NAME HERE AS PART OF DEMO SETUP *
 SET WEATHERSOURCE_SHARE_NAME = '*** PUT ACCOUNT SHARE HERE AS PART OF DEMO SETUP ***';
 SET WEATHERSOURCE_SHARE = $WEATHERSOURCE_ACCT_NAME || '.' || $WEATHERSOURCE_SHARE_NAME;
 
-CREATE OR REPLACE DATABASE HOL_WEATHERSOURCE_DB
+CREATE OR REPLACE DATABASE FROSTBYTE_WEATHERSOURCE
   FROM SHARE IDENTIFIER($WEATHERSOURCE_SHARE);
 
-GRANT IMPORTED PRIVILEGES ON DATABASE HOL_WEATHERSOURCE_DB TO ROLE HOL_ROLE;
+GRANT IMPORTED PRIVILEGES ON DATABASE FROSTBYTE_WEATHERSOURCE TO ROLE HOL_ROLE;
 ---*/
 
 
 -- Let's look at the data - same 3-part naming convention as any other table
-SELECT * FROM HOL_WEATHERSOURCE_DB.ONPOINT_ID.POSTAL_CODES LIMIT 100;
+SELECT * FROM FROSTBYTE_WEATHERSOURCE.ONPOINT_ID.POSTAL_CODES LIMIT 100;
