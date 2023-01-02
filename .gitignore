@@ -1,6 +1,9 @@
 # Mac files
 .DS_Store
 
+# Snowpark credentials file
+creds.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
