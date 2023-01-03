@@ -11,16 +11,11 @@ USE SCHEMA HOL_DB.HARMONIZED;
 
 
 -- ----------------------------------------------------------------------------
--- Step #1: Create a stream on the orders_v view if needed
+-- Step #1: Create the orders table and streams if needed
 -- ----------------------------------------------------------------------------
 
-CREATE STREAM IF NOT EXISTS ORDERS_V_STREAM ON VIEW ORDERS_V
-    SHOW_INITIAL_ROWS = TRUE;
+-- Debug: DROP TABLE ORDERS;
 
-
--- ----------------------------------------------------------------------------
--- Step #2: Create the orders table if needed
--- ----------------------------------------------------------------------------
 EXECUTE IMMEDIATE $$
 BEGIN
   IF (EXISTS (SELECT * 
@@ -37,6 +32,10 @@ BEGIN
 END;
 $$
 ;
+
+-- Debug: DROP STREAM ORDERS_STREAM;
+CREATE STREAM IF NOT EXISTS ORDERS_STREAM ON TABLE ORDERS
+    SHOW_INITIAL_ROWS = TRUE;
 
 
 -- ----------------------------------------------------------------------------
@@ -55,6 +54,7 @@ SET
     TARGET.ORDER_ID = SOURCE.ORDER_ID,
     TARGET.TRUCK_ID = SOURCE.TRUCK_ID,
     TARGET.ORDER_TS = SOURCE.ORDER_TS,
+    TARGET.ORDER_TS_DATE = SOURCE.ORDER_TS_DATE,
     TARGET.ORDER_DETAIL_ID = SOURCE.ORDER_DETAIL_ID,
     TARGET.LINE_NUMBER = SOURCE.LINE_NUMBER,
     TARGET.TRUCK_BRAND_NAME = SOURCE.TRUCK_BRAND_NAME,
@@ -82,6 +82,7 @@ WHEN NOT MATCHED THEN INSERT
     ORDER_ID,
     TRUCK_ID,
     ORDER_TS,
+    ORDER_TS_DATE,
     ORDER_DETAIL_ID,
     LINE_NUMBER,
     TRUCK_BRAND_NAME,
@@ -110,6 +111,7 @@ VALUES
     SOURCE.ORDER_ID,
     SOURCE.TRUCK_ID,
     SOURCE.ORDER_TS,
+    SOURCE.ORDER_TS_DATE,
     SOURCE.ORDER_DETAIL_ID,
     SOURCE.LINE_NUMBER,
     SOURCE.TRUCK_BRAND_NAME,

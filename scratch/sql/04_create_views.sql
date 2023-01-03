@@ -11,7 +11,7 @@ USE SCHEMA HOL_DB.HARMONIZED;
 
 
 -- ----------------------------------------------------------------------------
--- Step #1: Create some helper views
+-- Step #1: Create a helper view and stream!
 -- ----------------------------------------------------------------------------
 
 CREATE OR REPLACE VIEW ORDERS_V
@@ -20,6 +20,7 @@ SELECT
     OH.ORDER_ID,
     OH.TRUCK_ID,
     OH.ORDER_TS,
+    DATE(OH.ORDER_TS) AS ORDER_TS_DATE,
     OD.ORDER_DETAIL_ID,
     OD.LINE_NUMBER,
     M.TRUCK_BRAND_NAME,
@@ -73,3 +74,7 @@ JOIN RAW_POS.LOCATION L
 ;
 
 -- Debug: SELECT * FROM ORDERS_V WHERE DATE_PART(YEAR, ORDER_TS) = 2021 LIMIT 100;
+
+
+CREATE OR REPLEACE STREAM ORDERS_V_STREAM ON VIEW ORDERS_V
+    SHOW_INITIAL_ROWS = TRUE;
