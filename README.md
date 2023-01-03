@@ -10,5 +10,5 @@ VS Code + Snowflake extension
 GitHub repo
 Snowsql
 snowcli: Add details about config file (see Jeff's video)
-Conda environment
+Conda environment (see https://quickstarts.snowflake.com/guide/getting_started_snowpark_machine_learning/index.html?index=..%2F..index#2)
 Snowflake objects

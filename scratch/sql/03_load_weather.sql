@@ -34,9 +34,10 @@ Weather Source in the Snowflake Data Marketplace by following these steps:
                  -> Click the blue "Get" button
                      -> Under "Options", adjust the Database name to read "FROSTBYTE_WEATHERSOURCE" (all capital letters)
                         -> Grant to "HOL_ROLE"
-
-We can then use this data as if it had been loaded directly into our account. And
-we don't have to do any ETL work at all!    
+    
+That's it... we don't have to do anything from here to keep this data updated.
+The provider will do that for us and data sharing means we are always seeing
+whatever they they have published.
 
 
 -- You can also do it via code if you know the account/share details...
