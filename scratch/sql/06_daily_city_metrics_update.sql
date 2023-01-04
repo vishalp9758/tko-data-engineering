@@ -14,6 +14,7 @@ USE SCHEMA HOL_DB.HARMONIZED;
 -- Step #1: Create daily_city_metrics table if needed
 -- ----------------------------------------------------------------------------
 
+-- TODO: Is there a Python package for these conversions?
 CREATE OR REPLACE FUNCTION ANALYTICS.FAHRENHEIT_TO_CELSIUS(TEMP_F NUMBER(35,4))
 RETURNS NUMBER(35,4)
 AS
@@ -103,7 +104,7 @@ WITH ORDERS_STREAM_DATES_CTE AS
   JOIN RAW_POS.COUNTRY C
       ON C.ISO_COUNTRY = HD.COUNTRY
       AND C.CITY = HD.CITY_NAME
-    -- This join filters the results to only dates in the stream
+  -- This join filters the results to only dates in the stream
   JOIN ORDERS_STREAM_DATES_CTE OSD ON (HD.DATE_VALID_STD = OSD.DATE)
   GROUP BY
     HD.DATE_VALID_STD,
