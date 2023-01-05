@@ -34,6 +34,7 @@ jobs:
 
       - name: Configure snowcli
         run: |
+          cd $GITHUB_WORKSPACE
           echo "[connections.dev]" >> config
           echo "account = $SNOWSQL_ACCOUNT" >> config
           echo "username = $SNOWSQL_USER" >> config
