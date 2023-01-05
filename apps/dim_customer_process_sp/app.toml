@@ -1,0 +1,17 @@
+snowsql_config_path = "/Users/jhansen/.snowsql/config"
+snowsql_connection_name = "dev"
+
+[default]
+input_parameters = "(database_name string)"
+return_type = "string"
+file = "app.zip"
+name = "dim_customer_process_sp"
+handler = "app.main"
+#execute_as_caller = true
+
+[dev]
+database = "HOL_DB"
+schema = "HARMONIZED"
+warehouse = "HOL_WH"
+role = "HOL_ROLE"
+overwrite = true
