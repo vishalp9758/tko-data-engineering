@@ -34,5 +34,6 @@ jobs:
 
       - name: Setup and activate Conda environment
         run: |
+          $CONDA/bin/conda init
           $CONDA/bin/conda env create -f conda_env.yml
           $CONDA/bin/conda activate pysnowpark
