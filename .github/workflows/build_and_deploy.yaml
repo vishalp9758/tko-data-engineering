@@ -40,8 +40,7 @@ jobs:
           echo "username = $SNOWSQL_USER" >> config
           echo "password = $SNOWSQL_PWD" >> config
           echo "rolename = $SNOWSQL_ROLE" >> config
-
-          snow login -c config -C dev
+          ls
 
       - name: Deploy Snowpark apps
         run: python deploy_snowpark_apps.py $GITHUB_WORKSPACE
