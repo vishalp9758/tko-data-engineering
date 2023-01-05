@@ -43,4 +43,4 @@ jobs:
           printenv
 
       - name: Deploy Snowpark apps
-        run: python deploy_snowpark_apps.py
+        run: python deploy_snowpark_apps.py $GITHUB_WORKSPACE
