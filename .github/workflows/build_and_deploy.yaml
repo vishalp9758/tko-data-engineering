@@ -10,13 +10,10 @@ on:
   workflow_dispatch:
 
 env:
-  SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
   SNOWSQL_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
   SNOWSQL_USER: ${{ secrets.SNOWSQL_USER }}
-  SNOWSQL_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
-  SNOWSQL_SCHEMA: ${{ github.ref_name }}
+  SNOWSQL_PWD: ${{ secrets.SNOWSQL_PWD }}
   SNOWSQL_ROLE: ${{ secrets.SNOWSQL_ROLE }}
-  SNOWSQL_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
 
 jobs:
   build:
@@ -34,3 +31,15 @@ jobs:
 
       - name: Install Python packages
         run: pip install -r requirements.txt
+
+      - name: Configure snowcli
+        run: |
+          echo "[connections.dev]" >> config
+          echo "account = $SNOWSQL_ACCOUNT" >> config
+          echo "username = $SNOWSQL_USER" >> config
+          echo "password = $SNOWSQL_PWD" >> config
+          echo "rolename = $SNOWSQL_ROLE" >> config
+          cat config
+
+      - name: Deploy Snowpark apps
+        run: python deploy_snowpark_apps.py
