@@ -1,8 +1,8 @@
 from __future__ import annotations
 
+import os
 import configparser
 from pathlib import Path
-
 import toml
 
 
@@ -13,7 +13,10 @@ def get_dev_config(
     try:
         app_config = toml.load(app_config_path)
         config = configparser.ConfigParser(inline_comment_prefixes="#")
-        config.read(app_config['snowsql_config_path'])
+        if app_config['snowsql_config_path'].startswith('~'):
+            config.read(os.path.expanduser(app_config['snowsql_config_path']))
+        else:
+            config.read(app_config['snowsql_config_path'])
         session_config = config[
             'connections.' +
             app_config['snowsql_connection_name']

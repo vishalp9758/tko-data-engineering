@@ -1,4 +1,3 @@
-import sys
 from snowflake.snowpark import Session
 import snowflake.snowpark.types as T
 import snowflake.snowpark.functions as F
@@ -85,13 +84,21 @@ def main(session: Session, database_name: str) -> str:
     return f"Successfully processed {table_name_fq}"
 
 
-# For local debugging. Be aware you may need to type-convert arguments if
-# you add input parameters
+# For local debugging
+# Be aware you may need to type-convert arguments if you add input parameters
 if __name__ == '__main__':
-    from local_connection import get_dev_config
-    session = Session.builder.configs(get_dev_config('dev')).create()
+    # Add the utils package to our path and import the snowpark_utils function
+    import os, sys
+    current_dir = os.getcwd()
+    parent_parent_dir = os.path.dirname(os.path.dirname(current_dir))
+    sys.path.append(parent_parent_dir)
+
+    from utils import snowpark_utils
+    session = snowpark_utils.get_snowpark_session()
+
     if len(sys.argv) > 1:
         print(main(session, *sys.argv[1:]))  # type: ignore
     else:
         print(main(session))  # type: ignore
+
     session.close()
