@@ -12,3 +12,7 @@ Snowsql
 snowcli: Add details about config file (see Jeff's video)
 Conda environment (see https://quickstarts.snowflake.com/guide/getting_started_snowpark_machine_learning/index.html?index=..%2F..index#2)
 Snowflake objects
+
+
+Fork repository to your own GitHub account
+Clone forked repo locally

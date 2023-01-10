@@ -39,7 +39,7 @@ def merge_daily_city_metrics(session):
 
     print("{} records in stream".format(session.table('HARMONIZED.ORDERS_STREAM').count()))
     orders_stream_dates = session.table('HARMONIZED.ORDERS_STREAM').select(F.col("ORDER_TS_DATE").alias("DATE")).distinct()
-#    orders_stream_dates.limit(5).show()
+    orders_stream_dates.limit(5).show()
 
     orders = session.table("HARMONIZED.ORDERS_STREAM").group_by(F.col('ORDER_TS_DATE'), F.col('PRIMARY_CITY'), F.col('COUNTRY')) \
                                         .agg(F.sum(F.col("PRICE")).as_("price_nulls")) \

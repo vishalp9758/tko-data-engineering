@@ -7,7 +7,7 @@ return_type = "string"
 file = "app.zip"
 name = "daily_city_metrics_update_sp"
 handler = "app.main"
-#execute_as_caller = true
+execute_as_caller = true
 
 [dev]
 database = "HOL_DB"
