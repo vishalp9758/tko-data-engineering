@@ -36,4 +36,6 @@ Last Updated: 1/9/2023
 -- Commit your changes to 05_fahrenheit_to_celsius_udf/app.py and 05_fahrenheit_to_celsius_udf/requirements.txt
 -- Push your changes to your forked repository
 
+-- Review .github/workflows/build_and_deploy.yaml
+
 -- TODO: Add steps to view GitHub Actions result

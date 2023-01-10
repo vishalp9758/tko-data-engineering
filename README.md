@@ -16,3 +16,7 @@ Snowflake objects
 
 Fork repository to your own GitHub account
 Clone forked repo locally
+
+SnowSQL
+Configure ~/.snowsql/config correctly
+Need to decide on a connection name
