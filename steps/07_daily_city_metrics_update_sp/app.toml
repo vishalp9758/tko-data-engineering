@@ -11,7 +11,7 @@ execute_as_caller = true
 
 [dev]
 database = "HOL_DB"
-schema = "HARMONIZED"
+schema = "ANALYTICS"
 warehouse = "HOL_WH"
 role = "HOL_ROLE"
 overwrite = true

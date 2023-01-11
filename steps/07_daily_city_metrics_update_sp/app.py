@@ -30,8 +30,8 @@ def create_daily_city_metrics_table(session):
 
     dcm = session.create_dataframe([[None]*len(DAILY_CITY_METRICS_SCHEMA.names)], schema=DAILY_CITY_METRICS_SCHEMA) \
                         .na.drop() \
-                        .write.mode('overwrite').save_as_table('HARMONIZED.DAILY_CITY_METRICS')
-    dcm = session.table('HARMONIZED.DAILY_CITY_METRICS')
+                        .write.mode('overwrite').save_as_table('ANALYTICS.DAILY_CITY_METRICS')
+    dcm = session.table('ANALYTICS.DAILY_CITY_METRICS')
 
 
 def merge_daily_city_metrics(session):
@@ -84,7 +84,7 @@ def merge_daily_city_metrics(session):
     metadata_col_to_update = {"META_UPDATED_AT": F.current_timestamp()}
     updates = {**cols_to_update, **metadata_col_to_update}
 
-    dcm = session.table('HARMONIZED.DAILY_CITY_METRICS')
+    dcm = session.table('ANALYTICS.DAILY_CITY_METRICS')
     dcm.merge(daily_city_metrics_stg, (dcm['DATE'] == daily_city_metrics_stg['DATE']) & (dcm['CITY_NAME'] == daily_city_metrics_stg['CITY_NAME']) & (dcm['COUNTRY_DESC'] == daily_city_metrics_stg['COUNTRY_DESC']), \
                         [F.when_matched().update(updates), F.when_not_matched().insert(updates)])
 
@@ -92,11 +92,11 @@ def merge_daily_city_metrics(session):
 
 def main(session: Session) -> str:
     # Create the DAILY_CITY_METRICS table if it doesn't exist
-    if not table_exists(session, schema='HARMONIZED', name='DAILY_CITY_METRICS'):
+    if not table_exists(session, schema='ANALYTICS', name='DAILY_CITY_METRICS'):
         create_daily_city_metrics_table(session)
     
     merge_daily_city_metrics(session)
-#    session.table('HARMONIZED.DAILY_CITY_METRICS').limit(5).show()
+#    session.table('ANALYTICS.DAILY_CITY_METRICS').limit(5).show()
 
     return f"Successfully processed DAILY_CITY_METRICS"
 
