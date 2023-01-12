@@ -5,6 +5,11 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
+# SNOWFLAKE ADVANTAGE: Snowpark DataFrame API
+# SNOWFLAKE ADVANTAGE: Streams for incremental processing (CDC)
+# SNOWFLAKE ADVANTAGE: Streams on views
+
+
 from snowflake.snowpark import Session
 #import snowflake.snowpark.types as T
 import snowflake.snowpark.functions as F

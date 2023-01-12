@@ -17,6 +17,10 @@ TABLE_DICT = {
     "customer": {"schema": "RAW_CUSTOMER", "tables": CUSTOMER_TABLES}
 }
 
+# SNOWFLAKE ADVANTAGE: Schema detection
+# SNOWFLAKE ADVANTAGE: Data ingestion with COPY
+# SNOWFLAKE ADVANTAGE: Snowflake Tables (not file-based)
+
 def load_raw_table(session, tname=None, s3dir=None, year=None, schema=None):
     session.use_schema(schema)
     if year is None:
@@ -29,6 +33,8 @@ def load_raw_table(session, tname=None, s3dir=None, year=None, schema=None):
     df = session.read.option("compression", "snappy") \
                             .parquet(location)
     df.copy_into_table("{}".format(tname))
+
+# SNOWFLAKE ADVANTAGE: Warehouse elasticity (dynamic scaling)
 
 def load_all_raw_tables(session):
     _ = session.sql("ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE").collect()

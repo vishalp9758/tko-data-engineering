@@ -5,6 +5,9 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
+# SNOWFLAKE ADVANTAGE: Snowpark Python programmability
+# SNOWFLAKE ADVANTAGE: Python Stored Procedures
+
 from snowflake.snowpark import Session
 #import snowflake.snowpark.types as T
 import snowflake.snowpark.functions as F

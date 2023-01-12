@@ -5,6 +5,9 @@ Author:       Jeremiah Hansen
 Last Updated: 1/9/2023
 -----------------------------------------------------------------------------*/
 
+-- SNOWFLAKE ADVANTAGE: Data sharing/marketplace (instead of ETL)
+
+
 USE ROLE HOL_ROLE;
 USE WAREHOUSE HOL_WH;
 

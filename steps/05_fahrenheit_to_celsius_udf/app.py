@@ -5,6 +5,9 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
+# SNOWFLAKE ADVANTAGE: Python UDFs (with third-party packages)
+# SNOWFLAKE ADVANTAGE: Snowcli (PrPr)
+
 import sys
 
 
