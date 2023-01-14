@@ -15,7 +15,6 @@ Last Updated: 1/9/2023
 -- Make the following changes to 05_fahrenheit_to_celsius_udf/app.py
 -- Add this line on line 9: "from scipy.constants import convert_temperature"
 -- Replace the body of main() with the following content:
---     from scipy.constants import convert_temperature
 --     return convert_temperature(float(temp_f), 'F', 'C')
 
 -- Make the following changes to 05_fahrenheit_to_celsius_udf/requirements.txt
