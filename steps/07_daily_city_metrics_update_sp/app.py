@@ -5,6 +5,7 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
+import time
 from snowflake.snowpark import Session
 import snowflake.snowpark.types as T
 import snowflake.snowpark.functions as F
@@ -36,6 +37,7 @@ def create_daily_city_metrics_table(session):
 
 def merge_daily_city_metrics(session):
     _ = session.sql('ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE').collect()
+    time.sleep(5)
 
     print("{} records in stream".format(session.table('HARMONIZED.ORDERS_STREAM').count()))
     orders_stream_dates = session.table('HARMONIZED.ORDERS_STREAM').select(F.col("ORDER_TS_DATE").alias("DATE")).distinct()

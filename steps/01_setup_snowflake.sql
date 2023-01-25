@@ -1,6 +1,6 @@
 /*-----------------------------------------------------------------------------
 Hands-On Lab: Data Engineering with Snowpark
-Script:       01_setup.sql
+Script:       01_setup_snowflake.sql
 Author:       Jeremiah Hansen
 Last Updated: 1/1/2023
 -----------------------------------------------------------------------------*/
@@ -58,8 +58,7 @@ CREATE OR REPLACE FILE FORMAT PARQUET_FORMAT
     COMPRESSION = SNAPPY
 ;
 CREATE OR REPLACE STAGE FROSTBYTE_RAW_STAGE
-    URL = 's3://path-to-public-s3-bucket'
-    CREDENTIALS = (AWS_KEY_ID = '*****' AWS_SECRET_KEY = '*****')
+    URL = 's3://sfquickstarts/data-engineering-with-snowpark-python/'
 ;
 
 -- ANALYTICS objects

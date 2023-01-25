@@ -5,6 +5,7 @@
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
+import time
 from snowflake.snowpark import Session
 #import snowflake.snowpark.types as T
 #import snowflake.snowpark.functions as F
@@ -24,10 +25,10 @@ TABLE_DICT = {
 def load_raw_table(session, tname=None, s3dir=None, year=None, schema=None):
     session.use_schema(schema)
     if year is None:
-        location = "@external.frostbyte_raw_stage/tko/{}/{}".format(s3dir, tname)
+        location = "@external.frostbyte_raw_stage/{}/{}".format(s3dir, tname)
     else:
         print('\tLoading year {}'.format(year)) 
-        location = "@external.frostbyte_raw_stage/tko/{}/{}/year={}".format(s3dir, tname, year)
+        location = "@external.frostbyte_raw_stage/{}/{}/year={}".format(s3dir, tname, year)
     
     # we can infer schema using the parquet read option
     df = session.read.option("compression", "snappy") \
@@ -38,6 +39,7 @@ def load_raw_table(session, tname=None, s3dir=None, year=None, schema=None):
 
 def load_all_raw_tables(session):
     _ = session.sql("ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE").collect()
+    time.sleep(5)
 
     for s3dir, data in TABLE_DICT.items():
         tnames = data['tables']

@@ -7,6 +7,7 @@
 
 # SNOWFLAKE ADVANTAGE: Python Stored Procedures
 
+import time
 from snowflake.snowpark import Session
 #import snowflake.snowpark.types as T
 import snowflake.snowpark.functions as F
@@ -26,6 +27,7 @@ def create_orders_stream(session):
 
 def merge_order_updates(session):
     _ = session.sql('ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE').collect()
+    time.sleep(5)
 
     source = session.table('HARMONIZED.POS_FLATTENED_V_STREAM')
     target = session.table('HARMONIZED.ORDERS')
