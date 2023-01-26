@@ -19,12 +19,12 @@ USE SCHEMA RAW_POS;
 ALTER WAREHOUSE HOL_WH SET WAREHOUSE_SIZE = XLARGE;
 
 COPY INTO ORDER_HEADER
-FROM @external.frostbyte_raw_stage/tko/pos/order_header/year=2022
+FROM @external.frostbyte_raw_stage/pos/order_header/year=2022
 FILE_FORMAT = (FORMAT_NAME = EXTERNAL.PARQUET_FORMAT)
 MATCH_BY_COLUMN_NAME = CASE_SENSITIVE;
 
 COPY INTO ORDER_DETAIL
-FROM @external.frostbyte_raw_stage/tko/pos/order_detail/year=2022
+FROM @external.frostbyte_raw_stage/pos/order_detail/year=2022
 FILE_FORMAT = (FORMAT_NAME = EXTERNAL.PARQUET_FORMAT)
 MATCH_BY_COLUMN_NAME = CASE_SENSITIVE;
 
