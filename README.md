@@ -39,9 +39,19 @@ You will need the following things before beginning:
     * **A forked lab repository**. You'll need to create a fork of this lab repository in your GitHub account. Visit the [tko-data-engineering GitHub Repository](https://github.com/sfc-gh-jhansen/tko-data-engineering) and click on the "Fork" button near the top right. Complete any required fields and click "Create Fork".
     * **A local clone of the forked lab repository**. For connection details about your Git repository, open the Repository and copy the "HTTPS" link provided near the top of the page. If you have at least one file in your repository then click on the green "Code" icon near the top of the page and copy the "HTTPS" link. Use that link in VS Code to clone the repo to your computer. Please follow the instructions at [Clone and use a GitHub repository in Visual Studio Code](https://learn.microsoft.com/en-us/azure/developer/javascript/how-to/with-visual-studio-code/clone-github-repository) for more details.
 * Anaconda environment
-    * Create and active a conda environment for this lab using the supplied `conda_env.yml` file. Run these commands from a terminal in the root of your local repository.
+    * Create a conda environment for this lab using the supplied `conda_env.yml` file. Run these commands from a terminal in the root of your local repository.
 
         ```bash
         conda env create -f conda_env.yml
-        conda activate pysnowpark
         ```
+
+# Running the Demo
+Here are a few tips/ticks for running the demo:
+
+* For each Python step, run the script through a terminal
+    * For best results, open a terminal in VS Code
+    * Activate your Conda environment with `conda activate pysnowpark`
+    * Change directory to the folder containing the script you want to run (using `cd` in the terminal)
+    * Then run the script with `python <script-name>.py`
+* Don't try and run the Python script through the VS Code debugger as some paths will get messed up.
+    * This includes both from the VS Code editor's debug menu (`Run Python File` or `Debug Python File`) and from the Debugger extension.
