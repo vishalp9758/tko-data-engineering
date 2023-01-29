@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Hands-On Lab: Data Engineering with Snowpark
 # Script:       06_orders_process_sp/app.py
-# Author:       Caleb Baechtold, Jeremiah Hansen
+# Author:       Jeremiah Hansen, Caleb Baechtold
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 

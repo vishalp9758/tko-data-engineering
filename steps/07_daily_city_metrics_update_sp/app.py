@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Hands-On Lab: Data Engineering with Snowpark
 # Script:       07_daily_city_metrics_process_sp/app.py
-# Author:       Caleb Baechtold, Jeremiah Hansen
+# Author:       Jeremiah Hansen, Caleb Baechtold
 # Last Updated: 1/9/2023
 #------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ def create_daily_city_metrics_table(session):
                                         T.StructField("AVG_PRECIPITATION_MILLIMETERS", T.DecimalType()),
                                         T.StructField("MAX_WIND_SPEED_100M_MPH", T.DecimalType()),
                                     ]
-    DAILY_CITY_METRICS_COLUMNS= [*SHARED_COLUMNS, T.StructField("META_UPDATED_AT", T.TimestampType())]
+    DAILY_CITY_METRICS_COLUMNS = [*SHARED_COLUMNS, T.StructField("META_UPDATED_AT", T.TimestampType())]
     DAILY_CITY_METRICS_SCHEMA = T.StructType(DAILY_CITY_METRICS_COLUMNS)
 
     dcm = session.create_dataframe([[None]*len(DAILY_CITY_METRICS_SCHEMA.names)], schema=DAILY_CITY_METRICS_SCHEMA) \
